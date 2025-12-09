@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mockup Interativo — Dustborn</title>
+  <style>
+    body { background:#071018; color:#ecf0f1; font-family: 'Segoe UI', Arial; margin:0; padding:20px }
+    #controls { display:flex; gap:12px; align-items:center; margin-bottom:12px }
+    button, select, input { padding:8px 10px; border-radius:6px; border:1px solid #27404a; background:#0b2730; color:#ecf0f1 }
+    #canvasContainer { border:1px solid #27404a; background:#031017; padding:12px }
+    #view { width: 1200px; height: 700px }
+    #log { margin-top:12px; color:#9fb9bd }
+  </style>
+</head>
+<body>
+  <h1>Mockup Interativo — Dustborn</h1>
+  <div id="controls">
+    <label>View:</label>
+    <select id="viewSelect">
+      <option value="hud">HUD (hi-fi)</option>
+      <option value="colossus">Painel do Colosso (hi-fi)</option>
+      <option value="inventory">Inventário (hi-fi)</option>
+    </select>
+    <button id="export1920">Exportar PNG 1920x1080</button>
+    <label>W:</label><input id="w" type="number" value="1920" style="width:90px" />
+    <label>H:</label><input id="h" type="number" value="1080" style="width:90px" />
+    <button id="exportCustom">Exportar PNG</button>
+  </div>
+
+  <div id="canvasContainer">
+    <div id="view"></div>
+    <canvas id="exportCanvas" style="display:none"></canvas>
+  </div>
+
+  <div id="log"></div>
+
+  <script>
+    // SVG strings (copied from hi-fi assets) — inlined to avoid CORS when opened localmente
+    const svgs = {
+      hud: `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="barGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#27ae60" />
+      <stop offset="100%" stop-color="#2ecc71" />
+    </linearGradient>
+    <style>
+      .label { fill:#ecf0f1; font-family: 'Segoe UI', Arial; font-size:20px }
+      .sub { fill:#bdc3c7; font-family: 'Segoe UI', Arial; font-size:16px }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="transparent" />
+  <g transform="translate(40,40)">
+    <rect x="0" y="0" width="420" height="160" rx="8" fill="#071018" stroke="#27404a" />
+    <text x="20" y="36" class="label">Kael</text>
+    <text x="20" y="66" class="sub">Vida</text>
+    <rect x="20" y="74" width="360" height="28" rx="6" fill="#122023" />
+    <rect x="20" y="74" width="240" height="28" rx="6" fill="url(#barGrad)" />
+    <text x="300" y="96" class="sub">75%</text>
+    <text x="20" y="130" class="sub">Stamina: 60% · Temp: 38°C · Rad: LOW</text>
+  </g>
+  <g transform="translate(860,20)">
+    <circle cx="200" cy="200" r="120" fill="rgba(255,255,255,0.02)" stroke="#5fb3be" stroke-width="2" />
+    <line x1="200" y1="80" x2="200" y2="140" stroke="#5fb3be" stroke-width="3" />
+    <line x1="200" y1="260" x2="200" y2="320" stroke="#5fb3be" stroke-width="3" />
+    <line x1="80" y1="200" x2="140" y2="200" stroke="#5fb3be" stroke-width="3" />
+    <line x1="260" y1="200" x2="320" y2="200" stroke="#5fb3be" stroke-width="3" />
+    <text x="200" y="360" class="sub" text-anchor="middle">Alvo: -</text>
+  </g>
+  <g transform="translate(1400,40)">
+    <rect x="0" y="0" width="460" height="200" rx="8" fill="#071018" stroke="#27404a" />
+    <text x="20" y="36" class="label">Colosso</text>
+    <text x="20" y="66" class="sub">Energia</text>
+    <rect x="20" y="74" width="420" height="22" rx="6" fill="#122023" />
+    <rect x="20" y="74" width="285" height="22" rx="6" fill="#f39c12" />
+    <text x="360" y="90" class="sub">68%</text>
+    <text x="20" y="120" class="sub">Combustível: 54% · Motor: OK · Oficina: Danificada</text>
+    <rect x="20" y="140" width="420" height="36" rx="6" fill="#0b2830" stroke="#2c3e50" />
+    <text x="30" y="165" class="sub">Alerta: Tempestade em 02:15</text>
+  </g>
+  <rect x="0" y="980" width="1920" height="100" fill="#031017" />
+  <text x="40" y="1020" class="sub">Missões: 3 ativas · Recursos: Água 72% · Filtro: OK</text>
+</svg>`,
+
+      colossus: `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <style>
+    .title { fill:#ecf0f1; font-family: 'Segoe UI', Arial; font-size:22px }
+    .text { fill:#bdc3c7; font-family: 'Segoe UI', Arial; font-size:16px }
+    .box { fill:#071018; stroke:#27404a }
+  </style>
+  <rect width="100%" height="100%" fill="#031017" />
+  <text x="30" y="40" class="title">Painel do Colosso — Operações</text>
+  <g transform="translate(30,70)">
+    <rect x="0" y="0" width="380" height="740" rx="8" class="box" />
+    <text x="24" y="38" class="title">Tarefas Ativas</text>
+    <g transform="translate(24,64)">
+      <rect x="0" y="0" width="332" height="60" rx="6" fill="#0b2830" stroke="#2c3e50" />
+      <text x="12" y="36" class="text">Ignition Step 2 — Aguardando Engenheiro</text>
+      <rect x="0" y="80" width="332" height="60" rx="6" fill="#0b2830" stroke="#2c3e50" />
+      <text x="12" y="116" class="text">Reparar Oficina — 2 kits necessários</text>
+      <rect x="0" y="160" width="332" height="60" rx="6" fill="#0b2830" stroke="#2c3e50" />
+      <text x="12" y="196" class="text">Reabastecer Filtro de Ar — 1x no inventário</text>
+      <rect x="0" y="240" width="332" height="60" rx="6" fill="#0b2830" stroke="#2c3e50" />
+      <text x="12" y="276" class="text">Dispatch Scout Drone — Disponível</text>
+    </g>
+  </g>
+  <g transform="translate(440,70)">
+    <rect x="0" y="0" width="1130" height="540" rx="8" class="box" />
+    <text x="18" y="34" class="title">Esquema do Colosso</text>
+    <rect x="24" y="60" width="320" height="160" rx="6" fill="#0b2830" stroke="#2c3e50" />
+    <text x="36" y="92" class="text">Sala de Motores</text>
+    <rect x="364" y="60" width="320" height="160" rx="6" fill="#08242a" stroke="#2c3e50" />
+    <text x="376" y="92" class="text">Sala de Comando</text>
+    <rect x="704" y="60" width="320" height="160" rx="6" fill="#08242a" stroke="#2c3e50" />
+    <text x="716" y="92" class="text">Oficina</text>
+    <rect x="24" y="240" width="680" height="180" rx="6" fill="#08242a" stroke="#2c3e50" />
+    <text x="36" y="272" class="text">Dormitórios</text>
+    <rect x="724" y="240" width="430" height="180" rx="6" fill="#08242a" stroke="#2c3e50" />
+    <text x="736" y="272" class="text">Arsenal / Provisões</text>
+  </g>
+  <g transform="translate(30,630)">
+    <rect x="0" y="0" width="1540" height="200" rx="8" class="box" />
+    <text x="24" y="36" class="title">Ações Rápidas</text>
+    <text x="24" y="72" class="text">[Reparar Sala]  [Distribuir Recursos]  [Ativar Overdrive]</text>
+    <text x="24" y="110" class="text">Roles: Piloto (1) · Engenheiro (2) · Atirador (3) · Scavenger (4)</text>
+  </g>
+</svg>`,
+
+      inventory: `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <style>
+    .title { fill:#ecf0f1; font-family: 'Segoe UI', Arial; font-size:20px }
+    .text { fill:#bdc3c7; font-family: 'Segoe UI', Arial; font-size:14px }
+    .cell { fill:#0b2830; stroke:#1f3438 }
+  </style>
+  <rect width="100%" height="100%" fill="#031017" />
+  <text x="30" y="40" class="title">Inventário — Espaço Físico</text>
+  <g transform="translate(30,80)">
+    <rect x="0" y="0" width="640" height="640" rx="8" fill="#071018" stroke="#27404a" />
+    <g>
+      <rect x="16" y="16" width="72" height="72" class="cell" />
+      <rect x="96" y="16" width="72" height="72" class="cell" />
+      <rect x="176" y="16" width="72" height="72" class="cell" />
+      <rect x="256" y="16" width="72" height="72" class="cell" />
+      <rect x="336" y="16" width="72" height="72" class="cell" />
+      <rect x="416" y="16" width="72" height="72" class="cell" />
+      <rect x="496" y="16" width="72" height="72" class="cell" />
+      <rect x="576" y="16" width="72" height="72" class="cell" />
+      <rect x="16" y="16" width="144" height="72" fill="#12323a" stroke="#2f4b4f" />
+      <text x="40" y="60" class="text">Rifle</text>
+      <rect x="336" y="16" width="72" height="72" fill="#12323a" stroke="#2f4b4f" />
+      <text x="360" y="60" class="text">MedKit</text>
+    </g>
+  </g>
+  <g transform="translate(700,80)">
+    <rect x="0" y="0" width="460" height="320" rx="8" fill="#071018" stroke="#27404a" />
+    <text x="20" y="36" class="title">Detalhes do Item</text>
+    <text x="20" y="70" class="text">Nome: Rifle de Caça</text>
+    <text x="20" y="96" class="text">Peso: 6.2kg  Espaço: 3x1</text>
+    <text x="20" y="122" class="text">Condição: 82%  Mods: Silenciador</text>
+  </g>
+  <g transform="translate(700,420)">
+    <rect x="0" y="0" width="460" height="300" rx="8" fill="#071018" stroke="#27404a" />
+    <text x="20" y="36" class="title">Ações</text>
+    <text x="20" y="70" class="text">[Equipar]  [Guardar no Colosso]  [Vender]  [Descartar]</text>
+  </g>
+</svg>`
+    };
+
+    const view = document.getElementById('view');
+    const viewSelect = document.getElementById('viewSelect');
+    const log = document.getElementById('log');
+
+    function loadView(key){
+      view.innerHTML = svgs[key];
+      attachHotspots();
+      log.textContent = 'View carregada: ' + key;
+    }
+
+    viewSelect.addEventListener('change', e => loadView(e.target.value));
+
+    document.getElementById('export1920').addEventListener('click', ()=> exportSVGToPNG(1920,1080));
+    document.getElementById('exportCustom').addEventListener('click', ()=> {
+      const w = parseInt(document.getElementById('w').value,10) || 1920;
+      const h = parseInt(document.getElementById('h').value,10) || 1080;
+      exportSVGToPNG(w,h);
+    });
+
+    function exportSVGToPNG(width, height){
+      const svgEl = view.querySelector('svg');
+      if(!svgEl){ alert('Nenhum SVG carregado'); return; }
+      const svgString = new XMLSerializer().serializeToString(svgEl);
+      const blob = new Blob([svgString], {type: 'image/svg+xml;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.onload = function(){
+        const canvas = document.getElementById('exportCanvas');
+        canvas.width = width; canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#00000000'; ctx.fillRect(0,0,width,height);
+        ctx.drawImage(img, 0, 0, width, height);
+        URL.revokeObjectURL(url);
+        const a = document.createElement('a');
+        a.href = canvas.toDataURL('image/png');
+        a.download = 'dustborn_mockup_'+width+'x'+height+'.png';
+        a.click();
+      };
+      img.onerror = function(){ alert('Erro ao carregar SVG para exportar. Abra este arquivo em um navegador moderno.'); };
+      img.src = url;
+    }
+
+    // Hotspot handling example: translate click to svg coords
+    function attachHotspots(){
+      const svgEl = view.querySelector('svg');
+      if(!svgEl) return;
+      svgEl.addEventListener('click', function(evt){
+        const pt = svgEl.createSVGPoint();
+        pt.x = evt.clientX; pt.y = evt.clientY;
+        const inv = svgEl.getScreenCTM().inverse();
+        const svgP = pt.matrixTransform(inv);
+        // Example: detect clicks in certain areas depending on view
+        const key = viewSelect.value;
+        if(key === 'colossus'){
+          // Task list approx area: x 30..410, y 70..810 in original svg coords
+          if(svgP.x >= 30 && svgP.x <= 410 && svgP.y >= 70 && svgP.y <= 810){
+            log.textContent = 'Clicou em Tarefas — abrir painel de tarefa';
+            return;
+          }
+          // Esquema area
+          if(svgP.x >= 440 && svgP.x <= 1570 && svgP.y >= 70 && svgP.y <= 610){
+            log.textContent = 'Clicou em Esquema do Colosso — selecionar cômodo';
+            return;
+          }
+        }
+        if(key === 'inventory'){
+          // Grid approx area: x 30..670 y 80..720
+          if(svgP.x >= 30 && svgP.x <= 670 && svgP.y >= 80 && svgP.y <= 720){
+            log.textContent = 'Clicou no Grid do Inventário — selecionar slot/item';
+            return;
+          }
+        }
+        if(key === 'hud'){
+          // Colossus status area approx
+          if(svgP.x >= 1400 && svgP.x <= 1860 && svgP.y >= 40 && svgP.y <= 240){
+            log.textContent = 'Clicou no status do Colosso — abrir painel detalhado';
+            return;
+          }
+        }
+        log.textContent = `Clique em SVG: x=${Math.round(svgP.x)} y=${Math.round(svgP.y)}`;
+      });
+    }
+
+    // Load initial
+    loadView('hud');
+  </script>
+</body>
+</html>

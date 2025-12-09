@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+  <rect width="100%" height="100%" fill="#081018" />
+  <g fill="none" stroke="#6c7f85" stroke-width="2">
+    <text x="30" y="40" fill="#ecf0f1" font-family="Arial" font-size="18">Inventário (Grid físico)</text>
+    <!-- Player grid -->
+    <rect x="30" y="80" width="520" height="520" rx="6" />
+    <g>
+      <!-- 8x8 grid -->
+      <!-- Draw grid cells -->
+      <g stroke="#3e4b50" stroke-width="1">
+        <!-- rows -->
+        <!-- generate cells visually -->
+        <!-- We'll draw 8x8 simple cells -->
+        
+        <!-- Row/Cols -->
+        <!-- using manual positions for simplicity -->
+      </g>
+      <!-- example occupied cells -->
+      <rect x="50" y="100" width="80" height="80" fill="#2c3e50" stroke="#95a5a6" />
+      <text x="90" y="150" fill="#ecf0f1" font-family="Arial" font-size="12">Rifle</text>
+      <rect x="140" y="100" width="80" height="80" fill="#2c3e50" stroke="#95a5a6" />
+      <text x="170" y="150" fill="#ecf0f1" font-family="Arial" font-size="12">MedKit</text>
+    </g>
+
+    <!-- Right: item details -->
+    <rect x="570" y="80" width="400" height="300" rx="6" />
+    <text x="590" y="110" fill="#ecf0f1" font-family="Arial" font-size="14">Detalhes do Item</text>
+    <text x="590" y="140" fill="#bdc3c7" font-family="Arial" font-size="12">Nome: Rifle de Caça</text>
+    <text x="590" y="160" fill="#bdc3c7" font-family="Arial" font-size="12">Peso: 6.2kg  Espaço: 3x1</text>
+    <text x="590" y="180" fill="#bdc3c7" font-family="Arial" font-size="12">Condição: 82%  Mods: Silenciador</text>
+
+    <!-- Bottom: quick actions -->
+    <rect x="570" y="400" width="400" height="200" rx="6" />
+    <text x="590" y="430" fill="#ecf0f1" font-family="Arial" font-size="14">Ações</text>
+    <text x="590" y="460" fill="#bdc3c7" font-family="Arial" font-size="12">[Equipar] [Guardar no Colosso] [Vender] [Descartar]</text>
+  </g>
+</svg>

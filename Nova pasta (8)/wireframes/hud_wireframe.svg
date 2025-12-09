@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="200" viewBox="0 0 1200 200">
+  <rect width="100%" height="100%" fill="#0b0b0b" />
+  <g fill="none" stroke="#7f8c8d" stroke-width="2">
+    <!-- Health / Status left -->
+    <rect x="20" y="20" width="220" height="80" rx="6" />
+    <text x="30" y="45" fill="#ecf0f1" font-family="Arial" font-size="14">Vida</text>
+    <rect x="30" y="55" width="180" height="20" fill="#2c3e50" stroke="#95a5a6" />
+    <rect x="30" y="55" width="120" height="20" fill="#e74c3c" />
+    <text x="70" y="70" fill="#ecf0f1" font-family="Arial" font-size="12">75%</text>
+
+    <!-- Stamina / Temp / Rad -->
+    <rect x="260" y="20" width="300" height="80" rx="6" />
+    <text x="270" y="45" fill="#ecf0f1" font-family="Arial" font-size="14">Stamina · Temperatura · Radiação</text>
+    <text x="270" y="65" fill="#bdc3c7" font-family="Arial" font-size="12">Stamina: 60%  Temp: 38°C  Rad: LOW</text>
+
+    <!-- Center: crosshair / target info -->
+    <rect x="560" y="10" width="80" height="80" rx="40" />
+    <text x="590" y="55" fill="#ecf0f1" font-family="Arial" font-size="12" text-anchor="middle">Alvo</text>
+
+    <!-- Colossus status right -->
+    <rect x="880" y="20" width="300" height="120" rx="6" />
+    <text x="890" y="45" fill="#ecf0f1" font-family="Arial" font-size="14">Colosso: Energia 68% · Combustível 54%</text>
+    <text x="890" y="70" fill="#bdc3c7" font-family="Arial" font-size="12">Motor: OK · Blindagem Frontal: 82% · Oficina: Danificada</text>
+    <rect x="890" y="85" width="260" height="20" fill="#2c3e50" stroke="#95a5a6" />
+    <rect x="890" y="85" width="180" height="20" fill="#f1c40f" />
+    <text x="1000" y="100" fill="#ecf0f1" font-family="Arial" font-size="12">Alerta: Tempestade em 02:15</text>
+  </g>
+</svg>

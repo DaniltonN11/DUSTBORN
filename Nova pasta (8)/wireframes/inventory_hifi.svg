@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <style>
+    .title { fill:#ecf0f1; font-family: 'Segoe UI', Arial; font-size:20px }
+    .text { fill:#bdc3c7; font-family: 'Segoe UI', Arial; font-size:14px }
+    .cell { fill:#0b2830; stroke:#1f3438 }
+  </style>
+  <rect width="100%" height="100%" fill="#031017" />
+  <text x="30" y="40" class="title">Inventário — Espaço Físico</text>
+
+  <!-- Grid area -->
+  <g transform="translate(30,80)">
+    <rect x="0" y="0" width="640" height="640" rx="8" fill="#071018" stroke="#27404a" />
+    <!-- 8x8 grid cells -->
+    <!-- draw cells 8x8 -->
+    <!-- cell size 72 with 8 px gap -->
+    <g>
+      <!-- We'll render 8 rows x 8 cols -->
+      <!-- Using a loop would be nicer; static for wireframe -->
+      <!-- Row 0 -->
+      <rect x="16" y="16" width="72" height="72" class="cell" />
+      <rect x="96" y="16" width="72" height="72" class="cell" />
+      <rect x="176" y="16" width="72" height="72" class="cell" />
+      <rect x="256" y="16" width="72" height="72" class="cell" />
+      <rect x="336" y="16" width="72" height="72" class="cell" />
+      <rect x="416" y="16" width="72" height="72" class="cell" />
+      <rect x="496" y="16" width="72" height="72" class="cell" />
+      <rect x="576" y="16" width="72" height="72" class="cell" />
+      <!-- example occupied cells -->
+      <rect x="16" y="16" width="144" height="72" fill="#12323a" stroke="#2f4b4f" />
+      <text x="40" y="60" class="text">Rifle</text>
+      <rect x="336" y="16" width="72" height="72" fill="#12323a" stroke="#2f4b4f" />
+      <text x="360" y="60" class="text">MedKit</text>
+    </g>
+  </g>
+
+  <g transform="translate(700,80)">
+    <rect x="0" y="0" width="460" height="320" rx="8" fill="#071018" stroke="#27404a" />
+    <text x="20" y="36" class="title">Detalhes do Item</text>
+    <text x="20" y="70" class="text">Nome: Rifle de Caça</text>
+    <text x="20" y="96" class="text">Peso: 6.2kg  Espaço: 3x1</text>
+    <text x="20" y="122" class="text">Condição: 82%  Mods: Silenciador</text>
+  </g>
+
+  <g transform="translate(700,420)">
+    <rect x="0" y="0" width="460" height="300" rx="8" fill="#071018" stroke="#27404a" />
+    <text x="20" y="36" class="title">Ações</text>
+    <text x="20" y="70" class="text">[Equipar]  [Guardar no Colosso]  [Vender]  [Descartar]</text>
+  </g>
+
+</svg>

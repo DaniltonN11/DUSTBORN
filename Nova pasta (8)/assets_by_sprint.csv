@@ -1,0 +1,39 @@
+Sprint,Priority,Asset Type,Name/Identifier,Description,LOD Targets (poly),Texture Sizes,Format,Estimated Hours,Notes
+Sprint 1 - Protótipo do Colosso,High,3D Model,Colosso_Blockout,Modular blockout do casco principal e anexos,LO/Med,1k placeholder,FBX/OBJ,40,Base para iterações; colisões simples
+Sprint 1 - Protótipo do Colosso,High,3D Model,Motor_Room_Blockout,Interior da sala de motores (módulos interativos),Med,1k placeholder,FBX/OBJ,24,Interações: painéis, alavancas
+Sprint 1 - Protótipo do Colosso,High,3D Model,Command_Room_Blockout,Sala de comando com consoles e cadeiras,Med,1k placeholder,FBX/OBJ,20,Indicadores visuais para tarefas
+Sprint 1 - Protótipo do Colosso,High,3D Model,Dormitory_Blockout,Dormitórios modulares,Low,1k placeholder,FBX/OBJ,16,Spawn/respawn e áreas seguras
+Sprint 1 - Protótipo do Colosso,High,3D Model,Workshop_Bench,Oficina básica com estação de crafting,Med,512,FBX/OBJ,12,Interação de crafting simples
+Sprint 1 - Protótipo do Colosso,High,Character,Player_Placeholder,Modelo jogável Kael (low-poly placeholder) com rig simples,Med,1k,FBX,24,Animações básicas separadas
+Sprint 1 - Protótipo do Colosso,High,Animation,Player_Locomotion,Walk/Run/Interact/Revive,NA,NA,FBX/Animation,24,Root motion opcional
+Sprint 1 - Protótipo do Colosso,High,3D Model,Motorbike_Low,Moto de areia low-poly,Low,1k,FBX,16,Placeholder para exploração
+Sprint 1 - Protótipo do Colosso,High,3D Model,DustReaver_Low,Inimigo Dust Reaver (low-poly) com rig,Med,1k,FBX,20,AI basic attack/run animations
+Sprint 1 - Protótipo do Colosso,High,UI,HUD_Mockup,Mockup do HUD principal (wireframe),SVG/PNG,NA,PNG/SVG,8,Layouts de health,stamina,colosso status
+Sprint 1 - Protótipo do Colosso,High,Audio,SFX_EngineLoop,Loop de som do motor (placeholder),NA,NA,WAV/OGG,6,Loop simples para testes
+Sprint 1 - Protótipo do Colosso,Medium,Audio,SFX_DustStorm,Loop de tempestade de poeira,NA,NA,WAV/OGG,6,Used for weather events
+
+Sprint 2 - Multiplayer básico,High,Networking,Player_Network_Actions,Prefabs de interação sincronizada (painel, cadeira),NA,NA,Prefab/Docs,24,Implementar prediction/basic sync
+Sprint 2 - Multiplayer básico,High,3D Model,Buggy_Low,Buggy leve low-poly para exploração,Med,2k,FBX,20,Physics-ready placeholder
+Sprint 2 - Multiplayer básico,High,3D Model,Mechatron_Low,Inimigo Mechatron low-poly com rig,Med,1.5k,FBX,28,Animações de ataque e defesa
+Sprint 2 - Multiplayer básico,High,Animation,Sync_Animations,Anim sets adaptadas para network (blend trees),NA,NA,FBX/anim,18,Represents network-friendly anims
+Sprint 2 - Multiplayer básico,Medium,UI,Colossus_Panel_UI,UI do painel multi-usuário (prototipo interativo),SVG/PNG,NA,PNG/SVG,12,Includes task list and role indicators
+Sprint 2 - Multiplayer básico,Medium,Audio,Voice_Stubs,Clips para testes de comunicação,NA,NA,WAV/OGG,8,Short lines: "Engine online", "We are under attack"
+Sprint 2 - Multiplayer básico,Medium,VFX,Engine_Sparks,Partículas para falha do motor,NA,NA,Particle,6,Small particle system for repairs
+
+Sprint 3 - Crafting e danos,High,3D Model,Repair_Kit,Model e item repair kit com icon,Low,512,FBX/PNG,8,Object usable in workshop
+Sprint 3 - Crafting e danos,High,Animation,Repair_Anim,Animação de reparo (player uso de ferramenta),NA,NA,FBX/anim,12,Syncable for multiplayer
+Sprint 3 - Crafting e danos,High,3D Model,Carcino_Low,Carcino inimigo (low/med poly) com rig,High,2.5k,FBX,32,Multi-attack anims
+Sprint 3 - Crafting e danos,High,3D Model,Damage_States_Textures,Texturas para estados danificados (pbr masks),NA,2k,TGA/PNG,16,Para cômodos e veículos
+Sprint 3 - Crafting e danos,Medium,UI,Inventory_Icons,Set inicial de ícones para itens (consumíveis, peças),PNG,NA,PNG,12,Grid icon set
+Sprint 3 - Crafting e danos,Medium,VFX,Damage_Smoke,Sistemas de fumaça e faíscas para cômodos danificados,NA,NA,Particle,8,Scalable LOD versions
+
+Sprint 4 - Zona inicial jogável,High,Environment,Desert_Kit_Modular,Kit modular de ruínas e dunas (LODs),High,4k,FBX,48,Includes collision and navmesh-ready pieces
+Sprint 4 - Zona inicial jogável,High,3D Model,Reaver_Leader,Modelo de miniboss com rig e multi-phase anims,High,3k,FBX,40,Unique attacks and drop table
+Sprint 4 - Zona inicial jogável,High,Audio,Ambient_Desert_Loop,Mix de ambiente (vento, metal rangendo),NA,NA,WAV/OGG,12,Layered for adaptive music
+Sprint 4 - Zona inicial jogável,High,VFX,Dust_Storm_HQ,FX de tempestade com efeitos de visibilidade e partículas,NA,NA,Particle,20,Used in boss/event arenas
+Sprint 4 - Zona inicial jogável,Medium,UI,Blueprint_UI,Interface para blueprints e crafting avançado,SVG/PNG,NA,PNG/SVG,12,Drag-and-drop blueprint placement
+
+Cross-Sprint,High,Tech,Materials_and_Shaders,PBR materials base e shader para poeira/oxidação,NA,4k,TEX,24,Shared across many assets
+Cross-Sprint,High,Tech,LOD_and_Collision,Perf-ready LODs e colisões para assets principais,NA,NA,FBX/Docs,36,Crucial para builds
+Cross-Sprint,Medium,Design,Icon_Set_Small,Ícones gerais de HUD/menus (80–120 px),PNG,NA,PNG,10,Consistent style guide
+Cross-Sprint,Medium,Audio,Music_Tracks_Banks,Traços musicas modulares por situação,NA,NA,WAV/OGG,40,Loops e stems para dynamic music

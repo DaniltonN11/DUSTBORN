@@ -1,0 +1,43 @@
+site_name: Dustborn Wiki
+docs_dir: wiki
+nav:
+  - Home: README.md
+  - Overview: Overview.md
+  - GDD: GDD.md
+  - Architecture: Architecture.md
+  - Prototype (Godot): Prototype_Godot.md
+  - Assets: Assets.md
+  - UI: UI.md
+  - Roadmap: Roadmap.md
+  - Executive Summary: Executive_Summary.md
+  - FAQ: FAQ.md
+  - How To Run: HowToRun.md
+  - Contributing: Contributing.md
+theme:
+  name: material
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  palette:
+    primary: indigo
+    accent: deep-orange
+  font:
+    text: Roboto
+    code: Roboto Mono
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/your-org/your-repo
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/your-handle
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.superfences
+extra_css:
+  - assets/extra.css
+extra_javascript:
+  - assets/extra.js
+site_description: "Wiki do projeto Dustborn — design, arquitetura e protótipo"
+repo_name: "Dustborn"
+repo_url: "https://github.com/your-org/your-repo"
+site_url: "https://your-org.github.io/your-repo/"

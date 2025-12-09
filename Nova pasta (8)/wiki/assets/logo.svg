@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="100%" height="100%" fill="#2b2d42"/>
+  <g fill="#ef6c00">
+    <rect x="96" y="176" width="320" height="160" rx="24"/>
+    <rect x="176" y="112" width="160" height="32" rx="8"/>
+  </g>
+  <text x="256" y="340" font-family="Roboto, sans-serif" font-size="36" fill="#ffffff" text-anchor="middle">Dustborn</text>
+</svg>

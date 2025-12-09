@@ -1,0 +1,14 @@
+/* Extra styles for MkDocs Material theme (project-specific tweaks) */
+/* Slightly darker header background and custom logo sizing */
+.md-header {
+  background-color: #11121a;
+}
+
+.md-header__title {
+  font-weight: 700;
+}
+
+/* Logo sizing */
+.md-header .md-logo img {
+  max-height: 40px;
+}

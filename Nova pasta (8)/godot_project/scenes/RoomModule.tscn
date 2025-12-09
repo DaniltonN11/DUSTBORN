@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=4]
+
+[ext_resource path="res://godot_project/scripts/room_module.gd" type="Script" id=1]
+
+[node name="RoomModule" type="Node3D"]
+script = ExtResource( 1 )
+
+[node name="ModuleBody" type="MeshInstance3D" parent="."]
+mesh = SphereMesh {
+  radius = 2.0
+  height = 4.0
+}

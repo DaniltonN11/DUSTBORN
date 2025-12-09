@@ -1,0 +1,3 @@
+mkdocs
+# Material theme for a modern look
+mkdocs-material

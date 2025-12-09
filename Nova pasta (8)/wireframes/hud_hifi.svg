@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="barGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#27ae60" />
+      <stop offset="100%" stop-color="#2ecc71" />
+    </linearGradient>
+    <style>
+      .label { fill:#ecf0f1; font-family: 'Segoe UI', Arial; font-size:20px }
+      .sub { fill:#bdc3c7; font-family: 'Segoe UI', Arial; font-size:16px }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="transparent" />
+
+  <!-- Left: Player status -->
+  <g transform="translate(40,40)">
+    <rect x="0" y="0" width="420" height="160" rx="8" fill="#071018" stroke="#27404a" />
+    <text x="20" y="36" class="label">Kael</text>
+    <text x="20" y="66" class="sub">Vida</text>
+    <rect x="20" y="74" width="360" height="28" rx="6" fill="#122023" />
+    <rect x="20" y="74" width="240" height="28" rx="6" fill="url(#barGrad)" />
+    <text x="300" y="96" class="sub">75%</text>
+
+    <text x="20" y="130" class="sub">Stamina: 60% · Temp: 38°C · Rad: LOW</text>
+  </g>
+
+  <!-- Center: Target / Crosshair -->
+  <g transform="translate(860,20)">
+    <circle cx="200" cy="200" r="120" fill="rgba(255,255,255,0.02)" stroke="#5fb3be" stroke-width="2" />
+    <line x1="200" y1="80" x2="200" y2="140" stroke="#5fb3be" stroke-width="3" />
+    <line x1="200" y1="260" x2="200" y2="320" stroke="#5fb3be" stroke-width="3" />
+    <line x1="80" y1="200" x2="140" y2="200" stroke="#5fb3be" stroke-width="3" />
+    <line x1="260" y1="200" x2="320" y2="200" stroke="#5fb3be" stroke-width="3" />
+    <text x="200" y="360" class="sub" text-anchor="middle">Alvo: -</text>
+  </g>
+
+  <!-- Right: Colossus status -->
+  <g transform="translate(1400,40)">
+    <rect x="0" y="0" width="460" height="200" rx="8" fill="#071018" stroke="#27404a" />
+    <text x="20" y="36" class="label">Colosso</text>
+    <text x="20" y="66" class="sub">Energia</text>
+    <rect x="20" y="74" width="420" height="22" rx="6" fill="#122023" />
+    <rect x="20" y="74" width="285" height="22" rx="6" fill="#f39c12" />
+    <text x="360" y="90" class="sub">68%</text>
+
+    <text x="20" y="120" class="sub">Combustível: 54% · Motor: OK · Oficina: Danificada</text>
+    <rect x="20" y="140" width="420" height="36" rx="6" fill="#0b2830" stroke="#2c3e50" />
+    <text x="30" y="165" class="sub">Alerta: Tempestade em 02:15</text>
+  </g>
+
+  <!-- Bottom info strip -->
+  <rect x="0" y="980" width="1920" height="100" fill="#031017" />
+  <text x="40" y="1020" class="sub">Missões: 3 ativas · Recursos: Água 72% · Filtro: OK</text>
+
+</svg>
